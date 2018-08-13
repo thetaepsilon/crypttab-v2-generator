@@ -1,0 +1,26 @@
+<presetname>/
+	<optional sourcedev [1]>
+		-- if not specified, uses an LVM name expecting a "/dev/disk/local" symlink.
+		-- e.g. for preset files.home.foo, defaults to /dev/disk/local/files.home.foo.
+	<optional mapped name>
+		-- again derives from preset name.
+		-- if not specified, probably something like:
+		-- /dev/mapper/crypttab_$presetname_$time.
+		-- this system controls generation of the mount point units so this is fine,
+		-- however the admin may want a more predictable path.
+	<optional key name and path overrides>
+		-- in keeping with the "master key store" idea,
+		-- there is a default global directory where keys will be searched.
+		-- the key name will default to "cryptkey_$preset.bin" under this directory.
+	<target mount point>
+		-- the only mandatory argument here, label is self explanatory.
+		-- required because it is expected that other units
+		-- will pull in the mount points that this generator configures,
+		-- for the original idea of on-demand lock but asynchronously.
+
+[1]
+To allow for the setup of said /dev/disk/local symlink,
+the generated units should depend on some target unit to allow this to be created.
+Said target unit can then have local fragments which make it depend on other services,
+to set up the symlink to e.g. the appropriate LVM group like /dev/lvm_vgXY.
+
