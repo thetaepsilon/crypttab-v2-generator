@@ -1,8 +1,9 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 
 module User.Ds2.StupidTests (
-  TestCase, mkTestCase, TestSet,
-  Conjunction(Conjunction)) where
+  mkTestCase, mkTestSuite, TestSet,
+  Conjunction(Conjunction),
+  printTest, showTestIfFailed) where
 
 -- a relatively simple pure code unit testing facility.
 -- a single test case simply consists of a boolean expression -
