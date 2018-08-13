@@ -2,7 +2,7 @@
 
 module User.Ds2.StupidTests (
   mkTestCase, mkTestSuite, TestSet,
-  Conjunction(Conjunction),
+  Conjunction(Conjunction), tag,
   printTest, showTestIfFailed) where
 
 -- a relatively simple pure code unit testing facility.
