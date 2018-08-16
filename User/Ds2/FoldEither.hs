@@ -10,6 +10,7 @@ module User.Ds2.FoldEither where
 -- if no errors result, returns Result.
 
 data FoldResult d a o = Result d | MapFail a | FoldFail o
+  deriving (Show, Eq)
 
 -- d: fold state
 -- i: input element type before map
