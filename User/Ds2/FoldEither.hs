@@ -1,4 +1,4 @@
-module FoldEither where
+module User.Ds2.FoldEither where
 
 -- a combination of fmap and fold that allows signalling error conditions.
 -- for each item in a list,
