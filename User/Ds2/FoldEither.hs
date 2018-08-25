@@ -36,3 +36,17 @@ foldEitherL foldf mapf initial (i:is) =
         -- otherwise, pass on to rest of processing of list.
         Right folded -> foldEitherL foldf mapf folded is
 
+
+
+-- a variation on the above that doesn't do any mapping;
+-- it eliminates the case of a mapping failure.
+data FoldResultN d o = ResultN d | FoldFailN o
+foldEitherLN :: (d -> e -> Either o d) -> d -> [e] -> FoldResultN d o
+foldEitherLN _ initial [] = ResultN initial
+foldEitherLN foldf initial (element:es) =
+  let foldres = foldf initial element
+  in case foldres of
+    Left ffail -> FoldFailN ffail
+    Right folded -> foldEitherLN foldf folded es
+
+
